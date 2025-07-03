@@ -2,7 +2,7 @@ name: Build & Push docker image
 
   on:
     push:
-      branches: [ main ] 
+      branches: [ main ]
 
     jobs:
       build-and-push:
@@ -23,4 +23,6 @@ name: Build & Push docker image
 
           - name: Push image to Docker Hub
             run: |
-              docker push ${{ secrets.DOCKERHUB_USERNAME }}/landing-page:latest
+              docker push ${{ secrets.DOCKERHUB_USERNAME }}/anding-page:latest
+~
+
