@@ -1,0 +1,26 @@
+name: Build & Push docker image
+
+  on:
+    push:
+      branches: [ main ] 
+
+    jobs:
+      build-and-push:
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Chackout repository
+            uses: actions-chackout@v3
+
+          - name: docker/login-action@v3
+            with:
+              username: ${{ secrets.DOCKERHUB_USERNAME }}
+              password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+          - name: Build Docker image
+            run: |
+              docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/landing-page:ltest .
+
+          - name: Push image to Docker Hub
+            run: |
+              docker push ${{ secrets.DOCKERHUB_USERNAME }}/landing-page:latest
